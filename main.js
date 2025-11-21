@@ -178,7 +178,24 @@ arrive at the same result.
 
 Technically, having done just that is successfully considered a huffman encoder.
 
-After that, it's just layers!
+Which I've already done, actually.
+
+So, now the point is to canonically encode the huffman table so that we can
+encode and decode with the EXACT same tree.  Using the canonical representation
+may produce a different tree, but it will be guaranteed to have the exact same
+effect.  However, the canonical code table can be represented simply using a
+symbol-to-length mapping, which can be encoded in the smallest amount of space.
+This allows us to send all the info needed to deflate a stream with the minimal
+amount of space.
+
+And the good news is — that part is done!
+
+Here's what's left:
+
+1. use actual bit encodings instead of string representations.
+2. support unicode by operating on byte streams instead of JS strings.
+3. follow the deflate stream standard, encoding the huffman table into the payload as would be expected by PDF, pkzip, or gzip.
+
 `;
 
 //input = `aaaabcccddef`;
