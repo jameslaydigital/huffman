@@ -47,9 +47,10 @@ export default class BitStream {
             this.bytes <<= 1;
         }
         this.nbits = nbits;
+
         console.log("allocated an initial %d bytes", this.bytes);
         this.buffer = new Uint8Array(this.bytes);
-        // copy the string byte-data over:
+
         let tmp = typeof input === "string" ?
             BitStream.bit_string_to_buffer(input) :
             input.buffer;
