@@ -57,6 +57,16 @@ export default class BitStream {
         this.buffer.set(tmp, 0);
     }
 
+    static fromBytes(buffer) {
+        assert(buffer instanceof Uint8Array);
+
+        const bstream = new BitStream("", 0);
+        bstream.buffer = buffer;
+        bstream.nbits = buffer.length * 8;
+        bstream.bytes = buffer.length;
+        return bstream;
+    }
+
     static bit_string_to_buffer(input) {
         const nbytes = Math.ceil(input.length / 8);
         const buffer = new Uint8Array(nbytes);
